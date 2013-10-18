@@ -56,6 +56,8 @@ class PloneReloadEvent(sublime_plugin.EventListener):
 
     def on_post_save(self, view):
 
+        if view.settings().get('syntax').lower().find('python') == -1:
+            return
 
         # sublime.status_message does not work
 
