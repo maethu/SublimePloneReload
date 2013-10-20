@@ -4,7 +4,7 @@ SublimePloneReload
 plone.reload support for Sublime Text 2.
 plone.reload gets called "on save".
 
-The configuration will pop up on first use. 
+The configuration will pop up on first use.
 
 The configuration is stored in `PloneReload.sublime-settings`.
 
@@ -19,7 +19,9 @@ Format:
 ```
 
 
-Sublime Text 3 is currently not supported. 
+Sublime Text 3 is currently not supported.
 
 Author: maethu (Mathias Leimgruber)
+
 Tracker: https://github.com/maethu/SublimePloneReload/issues
+Source: https://github.com/maethu/SublimePloneReload
