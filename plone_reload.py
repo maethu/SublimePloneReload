@@ -5,13 +5,13 @@ import threading
 
 
 def format_error_message(html):
-    xpr = re.compile('<li.*?>(.*?)</li>', re.DOTALL)
+    xpr = re.compile('<strong.*?>(.*?)</strong>', re.DOTALL)
     match = xpr.search(html)
     errors = "YOUR CODE SUCKS:\n"
     errors += "----------------\n\n"
     errors += "Reload not possible\n\n"
     if match:
-        for error in match.groups():
+        for error in match.groups()[:2]:
             errors += error + '\n'
 
     sublime.error_message(errors)
@@ -45,7 +45,7 @@ class PloneReload(threading.Thread):
             else:
                 print 'Strange content', req._content
 
-        elif req.status_code == 503:
+        elif '<h2>Site Error</h2>' in req._content:
             print 'YOUR CODE SUCKS', req.status_code
             format_error_message(req._content)
         else:
