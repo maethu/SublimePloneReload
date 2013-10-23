@@ -44,6 +44,8 @@ class PloneReload(threading.Thread):
                 print 'No code reloaded', req.status_code
             else:
                 print 'Strange content', req._content
+        elif req.status_code == 401:
+            print 'Unauthorized', req.status_code
 
         elif '<h2>Site Error</h2>' in req._content:
             print 'YOUR CODE SUCKS', req.status_code
