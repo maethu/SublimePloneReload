@@ -65,6 +65,10 @@ class PloneReloadEvent(sublime_plugin.EventListener):
 
         settings = sublime.load_settings('PloneReload.sublime-settings')
 
+        if not settings.get('enabled', True):
+            print "PloneReload is disabled"
+            return
+
         domain = settings.get('domain', None)
         port = settings.get('port', None)
         user = settings.get('user', None)
@@ -76,6 +80,7 @@ class PloneReloadEvent(sublime_plugin.EventListener):
             settings.set('port', '8080')
             settings.set('user', 'admin')
             settings.set('pw', 'admin')
+            settings.set('enabled', True)
             sublime.save_settings('PloneReload.sublime-settings')
 
             # Open prefs

@@ -2,9 +2,11 @@ CHANGELOG
 =========
 
 
-1.0.1 (Unreleased)
-------------------
+1.1 (Unreleased)
+----------------
 
+- Add possibility to enable/disable the plugin.
+- Handle unauthorized
 - Better error msg.
   [mathias.leimgruber]
 

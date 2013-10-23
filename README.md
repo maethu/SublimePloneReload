@@ -6,7 +6,7 @@ plone.reload support for Sublime Text 2.
 
 Usage:
 ------
-The configuration will pop up on first use. The configuration is stored in `PloneReload.sublime-settings`.
+The configuration is stored in `PloneReload.sublime-settings`.
 
 Format:
 ```json
@@ -14,7 +14,8 @@ Format:
         "domain": "localhost",
         "port": "8080",
         "pw": "admin",
-        "user": "admin"
+        "user": "admin",
+        "enabled": true
 }
 ```
 
