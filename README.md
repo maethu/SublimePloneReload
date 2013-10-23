@@ -21,6 +21,19 @@ Format:
 plone.reload gets called "on save".
 
 
+Installation
+------------
+
+Use `Package Control: Install Package` and search for `PloneReload`.
+
+Or, if Package Control is not installed...
+
+```
+git clone https://github.com/maethu/SublimePloneReload.git
+```
+
+Into your ${path/to/sublime}/Packages
+
 Info:
 -----
 
