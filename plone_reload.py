@@ -1,12 +1,13 @@
 import re
-import requests
-import sublime, sublime_plugin
+from . import requests
+import sublime
+import sublime_plugin
 import threading
 
 
 def format_error_message(html):
     xpr = re.compile('<strong.*?>(.*?)</strong>', re.DOTALL)
-    match = xpr.search(html)
+    match = xpr.search(str(html))
     errors = "YOUR CODE SUCKS:\n"
     errors += "----------------\n\n"
     errors += "Reload not possible\n\n"
@@ -18,7 +19,6 @@ def format_error_message(html):
     return
 
 
-
 class PloneReload(threading.Thread):
     def __init__(self, domain, port, user, pw):
         self.domain = domain
@@ -27,31 +27,33 @@ class PloneReload(threading.Thread):
         self.pw = pw
         threading.Thread.__init__(self)
 
-
     def run(self):
-        url = 'http://%s:%s/reload?action=code' % (self.domain, self.port)
+        url = 'http://{0}:{1}/reload?action=code'.format(self.domain,
+                                                         self.port)
 
         try:
             req = requests.get(url, auth=(self.user, self.pw))
         except requests.exceptions.ConnectionError:
-            print 'No zope running on %s:%s' % (self.domain, self.port)
+            print('No zope running on {}:{}'.format(self.domain, self.port))
+
             return
 
         if req.status_code == 200:
-            if 'Code reloaded:' in req._content:
-                print 'Code reloaded', req.status_code
-            elif 'No code reloaded!' in req._content:
-                print 'No code reloaded', req.status_code
-            else:
-                print 'Strange content', req._content
-        elif req.status_code == 401:
-            print 'Unauthorized', req.status_code
 
-        elif '<h2>Site Error</h2>' in req._content:
-            print 'YOUR CODE SUCKS', req.status_code
+            if b'Code reloaded:' in req._content:
+                print('Code reloaded', req.status_code)
+            elif b'No code reloaded!' in req._content:
+                print('No code reloaded', req.status_code)
+            else:
+                print('Strange content', req._content)
+        elif req.status_code == 401:
+            print('Unauthorized', req.status_code)
+
+        elif b'<h2>Site Error</h2>' in req._content:
+            print('YOUR CODE SUCKS', req.status_code)
             format_error_message(req._content)
         else:
-            print 'Error', req.status_code
+            print('Error', req.status_code)
 
 
 class PloneReloadEvent(sublime_plugin.EventListener):
@@ -66,7 +68,7 @@ class PloneReloadEvent(sublime_plugin.EventListener):
         settings = sublime.load_settings('PloneReload.sublime-settings')
 
         if not settings.get('enabled', True):
-            print "PloneReload is disabled"
+            print("PloneReload is disabled")
             return
 
         domain = settings.get('domain', None)
@@ -92,5 +94,3 @@ class PloneReloadEvent(sublime_plugin.EventListener):
             settings.get('user'),
             settings.get('pw'))
         thread.start()
-
-
