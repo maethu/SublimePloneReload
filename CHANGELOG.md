@@ -2,8 +2,8 @@ CHANGELOG
 =========
 
 
-1.1 (Unreleased)
-----------------
+1.1.0 (2013-10-23)
+-----------------
 
 - Add possibility to enable/disable the plugin.
 - Handle unauthorized
@@ -11,8 +11,8 @@ CHANGELOG
   [mathias.leimgruber]
 
 
-1.0 (2013-10-20)
-----------------
+1.0.0 (2013-10-20)
+-----------------
 
 - Init Version
 - Support Sublime Text 2
