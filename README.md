@@ -1,8 +1,9 @@
 SublimePloneReload
 ==================
 
-plone.reload support for Sublime Text 2.
+plone.reload support for Sublime Text 2 and 3.
 
+The 1.x series supports SublimeText 2 and the 2.x series supports SublimeText 3
 
 Usage:
 ------
@@ -37,8 +38,6 @@ Into your ${path/to/sublime}/Packages
 
 Info:
 -----
-
-Sublime Text 3 is currently not supported.
 
 Author: https://github.com/maethu
 
